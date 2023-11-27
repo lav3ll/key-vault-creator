@@ -97,6 +97,8 @@ let typeSpecial = "";
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  const selections = [];
+
   passLength = Number(
     prompt(
       "How long would you like your password to be? (between 8 & 128 characters)"
@@ -123,6 +125,7 @@ function getPasswordOptions() {
 
   if (typeLower) {
     typeLower === true;
+    selections.push(typeLower);
   } else {
     typeLower === false;
   }
@@ -134,6 +137,7 @@ function getPasswordOptions() {
 
   if (typeUpper) {
     typeUpper === true;
+    selections.push(typeUpper);
   } else {
     typeUpper === false;
   }
@@ -145,6 +149,7 @@ function getPasswordOptions() {
 
   if (typeNumeric) {
     typeNumeric === true;
+    selections.push(typeNumeric);
   } else {
     typeNumeric === false;
   }
@@ -156,10 +161,15 @@ function getPasswordOptions() {
 
   if (typeSpecial) {
     typeSpecial === true;
+    selections.push(typeSpecial);
   } else {
     typeSpecial === false;
   }
 
+  if (selections.length === 0) {
+    console.log("You must select at least one character type!!!");
+    return;
+  }
   generatePassword(passLength, typeLower, typeUpper, typeNumeric, typeSpecial);
 }
 
