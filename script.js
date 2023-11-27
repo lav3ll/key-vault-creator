@@ -88,17 +88,20 @@ var upperCasedCharacters = [
   "Z",
 ];
 
+// prompt variables
+let passLength = 0;
+let typeLower = "";
+let typeUpper = "";
+let typeNumeric = "";
+let typeSpecial = "";
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-  const passLength = Number(
+  passLength = Number(
     prompt(
       "How long would you like your password to be? (between 8 & 128 characters)"
     )
   );
-
-  // const typeSpecial = prompt(
-  //   "Would you like special characters in your password?"
-  // );
 
   //Ask the user how long they would like their password to be
   if (passLength === null || passLength === undefined || passLength === "") {
@@ -114,44 +117,65 @@ function getPasswordOptions() {
   }
 
   //Ask the user if they would like lower case characters in their password
-  const typeLower = confirm(
+  typeLower = confirm(
     "Would you like lower case characters in your password? (Press OK for yes and Cancel for no)"
   );
 
   if (typeLower) {
-    // Use lowercase characters in the password
+    typeLower === true;
   } else {
-    // Do not use lowercase characters in the password
+    typeLower === false;
   }
 
   //Ask the user if they would like upper case characters in their password
-  const typeUpper = confirm(
+  typeUpper = confirm(
     "Would you like upper case characters in your password? (Press OK for yes and Cancel for no)"
   );
 
   if (typeUpper) {
-    // Use uppercase characters in the password
+    typeUpper === true;
   } else {
-    // Do not use uppercase characters in the password
+    typeUpper === false;
   }
 
   //Ask the user if they would like numbers in their password
-  const typeNumeric = confirm(
+  typeNumeric = confirm(
     "Would you like numbers in your password? (Press OK for yes and Cancel for no)"
   );
 
   if (typeNumeric) {
-    // Use numbers in the password
+    typeNumeric === true;
   } else {
-    // Do not use numbers in the password
+    typeNumeric === false;
   }
+
+  //Ask the user if they would like numbers in their password
+  const typeSpecial = confirm(
+    "Would you like special characters in your password? (Press OK for yes and Cancel for no)"
+  );
+
+  if (typeSpecial) {
+    typeSpecial === true;
+  } else {
+    typeSpecial === false;
+  }
+
+  generatePassword(passLength, typeLower, typeUpper, typeNumeric, typeSpecial);
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {}
+function getRandom(arr) {
+  return arr[Math.trunc(Math.random() * arr.length)];
+}
 
 // Function to generate password with user input
-function generatePassword() {}
+function generatePassword(length) {
+  let result = "";
+  for (i = 0; i < length; i++) {
+    result = result + getRandom(upperCasedCharacters);
+  }
+  console.log(result);
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
