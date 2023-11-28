@@ -16,7 +16,7 @@ No installation needed
 
 ## Usage
 
-![Screenhot of the front page of key vault creator]()
+![Screenhot of the front page of key vault creator](./images/sc.png)
 
 **Website Overview:**
 Welcome to our Key Vault Creator!(Password Generator) Customize your password by selecting a character length between 8 and 128, and pick from uppercase, lowercase, numbers, and special characters. Hit the 'Generate Password' button to create a unique and secure password tailored to your preferences
