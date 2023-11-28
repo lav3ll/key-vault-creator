@@ -107,12 +107,12 @@ function getPasswordOptions() {
 
   //Ask the user how long they would like their password to be
   if (passLength === null || passLength === undefined || passLength === "") {
-    console.log("You have not entered a value. Please enter a value");
+    alert("You have not entered a value. Please enter a value");
   } else if (isNaN(passLength)) {
-    console.log("You have entered a non-numeric value. Please input a number");
+    alert("You have entered a non-numeric value. Please input a number");
     return;
   } else if (passLength < 8 || passLength > 128) {
-    console.log(
+    alert(
       "Please pick a password length inside the range of 8 to 128 characters"
     );
     return;
@@ -167,7 +167,7 @@ function getPasswordOptions() {
   }
 
   if (selections.length === 0) {
-    console.log("You must select at least one character type!!!");
+    alert("You must select at least one character type!!!");
     return;
   }
   generatePassword(passLength, typeLower, typeUpper, typeNumeric, typeSpecial);
@@ -214,17 +214,16 @@ function generatePassword(
 
   // Remove the extra password to the specified length
   result = result.slice(0, length);
-  console.log(result);
   writePassword(result);
 }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-function writePassword(result) {
+function writePassword(userPassword) {
   var passwordText = document.querySelector("#password");
 
-  var password = result;
+  var password = userPassword;
   passwordText.value = password;
 }
 
