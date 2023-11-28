@@ -179,22 +179,59 @@ function getRandom(arr) {
 }
 
 // Function to generate password with user input
-function generatePassword(length) {
-  let result = "";
-  for (i = 0; i < length; i++) {
-    result = result + getRandom(upperCasedCharacters);
+function generatePassword(
+  length,
+  typeLower,
+  typeUpper,
+  typeNumeric,
+  typeSpecial
+) {
+  const characterSets = [];
+  // Check to see which of the users variables to use
+  if (typeLower) {
+    characterSets.push(lowerCasedCharacters);
   }
+  if (typeUpper) {
+    characterSets.push(upperCasedCharacters);
+  }
+  if (typeNumeric) {
+    characterSets.push(numericCharacters);
+  }
+  if (typeSpecial) {
+    characterSets.push(specialCharacters);
+  }
+
+  let result = "";
+  let counter = 0;
+
+  while (result.length < length) {
+    if (counter === characterSets.length) counter = 0;
+
+    const randomChar = getRandom(characterSets[counter]);
+    result += randomChar;
+    counter++;
+  }
+
+  // Remove the extra password to the specified length
+  result = result.slice(0, length);
   console.log(result);
+  return result;
 }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
+  var password = generatePassword(
+    passLength,
+    typeLower,
+    typeUpper,
+    typeNumeric,
+    typeSpecial
+  );
+  console.log(password);
   passwordText.value = password;
 }
 
