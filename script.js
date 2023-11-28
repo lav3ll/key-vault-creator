@@ -215,23 +215,16 @@ function generatePassword(
   // Remove the extra password to the specified length
   result = result.slice(0, length);
   console.log(result);
-  return result;
+  writePassword(result);
 }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-function writePassword() {
+function writePassword(result) {
   var passwordText = document.querySelector("#password");
 
-  var password = generatePassword(
-    passLength,
-    typeLower,
-    typeUpper,
-    typeNumeric,
-    typeSpecial
-  );
-  console.log(password);
+  var password = result;
   passwordText.value = password;
 }
 
